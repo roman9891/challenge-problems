@@ -141,3 +141,16 @@ const someRecursive = (array, callback, index = 0) => {
 
 // console.log(someRecursive([4,6,8], val => val > 10))
 
+const flatten = (array) => {
+    
+    console.log('is array?: ', Array.isArray(array[0]))
+    
+    if (Array.isArray(array[0])) {return flatten(array[0]).concat(flatten(array.slice(1)))}
+    
+    console.log('array has length?: ', array.length)
+    
+    if (array.length) return [array[0]].concat(flatten(array.slice(1))).filter(x => x !== undefined)
+}
+
+console.log(flatten([0,[1,2,3],4,5,[6,[7]]]))
+// console.log([][0])
