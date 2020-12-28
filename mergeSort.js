@@ -31,5 +31,19 @@ const merger = (arr1, arr2) => {
     return result
 }
 
-console.log(merger([1,3],[2,4,6,8]))
-console.log(merger([1,3,4],[7,8,9]))
+const splitter = arr => {
+    const result = []
+    const half = ~~arr.length/2
+    let half1 = arr.slice(0, half), half2 = arr.slice(half, arr.length)
+
+    if (half1.length < 2 && half2.length < 2) return [half1, half2]
+    else return [...splitter(half1), ...splitter(half2)]
+}
+
+// console.log(merger([1,3],[2,4,6,8]))
+// console.log(merger([1,3,4],[7,8,9]))
+console.log(splitter([1,2,3,4,5,6]))
+
+const simpleSplitter = arr => arr.join(`|`).split(`|`).map(n => parseInt(n))
+
+console.log(simpleSplitter([1,2,3,4,55]))

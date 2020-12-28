@@ -1,4 +1,16 @@
-export const bubbleSort = arr => {
+const maxGold = arr => {
+    let result = 0
+
+    arr = bubbleSort(arr)
+
+    for (let i = arr.length - 2; i > (arr.length/3 - 1); i-=2) {
+        result += arr[i]
+    }
+    
+    return result
+}
+
+const bubbleSort = arr => {
     for (let i = 0; i < arr.length; i++) {
         let noSwap = true//start true to enter loop at least once
         for (let j = 0; j < arr.length - 1 - i; j++) {
@@ -14,6 +26,6 @@ export const bubbleSort = arr => {
     return arr
 }
 
-console.log(bubbleSort([12,23,45,3,1,324]))
-console.log(bubbleSort([23,5,4,655,213,45,7]))
-console.log(bubbleSort([5,4,3,2,1]))
+console.log(maxGold([2,4,1,2,7,8]))
+console.log(maxGold([2,4,5]))
+console.log(maxGold([9,8,7,6,5,1,2,3,4]))
