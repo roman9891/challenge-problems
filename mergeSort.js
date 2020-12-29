@@ -32,12 +32,13 @@ const merger = (arr1, arr2) => {
 }
 
 const splitter = arr => {
-    const result = []
+    if (arr.length <= 1) return arr
+    
     const half = ~~arr.length/2
-    let half1 = arr.slice(0, half), half2 = arr.slice(half, arr.length)
-
-    if (half1.length < 2 && half2.length < 2) return [half1, half2]
-    else return [...splitter(half1), ...splitter(half2)]
+    let half1 = splitter(arr.slice(0, half)), 
+        half2 = splitter(arr.slice(half, arr.length))
+    
+    return merger(half1, half2)
 }
 
 // console.log(merger([1,3],[2,4,6,8]))
