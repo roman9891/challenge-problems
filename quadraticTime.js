@@ -7,3 +7,6 @@ const quadratic = (n) => {
     }
 }
 
+const findMatch = (arr, value) => {
+    for (let i = 0; i < arr.length; i++)
+}
