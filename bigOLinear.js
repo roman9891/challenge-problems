@@ -11,3 +11,4 @@ const linear = (arr) => {
         console.log("Doing a thing!")
     }
 }
+
