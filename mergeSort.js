@@ -31,20 +31,16 @@ const merger = (arr1, arr2) => {
     return result
 }
 
-const splitter = arr => {
-    if (arr.length <= 1) return arr
+const mergeSort = arr => {
+    if (arr.length <= 1) return arr//only triggers at the end of stack when array has been full split
     
     const half = ~~arr.length/2
-    let half1 = splitter(arr.slice(0, half)), 
-        half2 = splitter(arr.slice(half, arr.length))
+    let half1 = mergeSort(arr.slice(0, half)),//recursively splits array but recieves merged array as return
+        half2 = mergeSort(arr.slice(half, arr.length))
     
     return merger(half1, half2)
 }
 
 // console.log(merger([1,3],[2,4,6,8]))
 // console.log(merger([1,3,4],[7,8,9]))
-console.log(splitter([1,2,3,4,5,6]))
-
-const simpleSplitter = arr => arr.join(`|`).split(`|`).map(n => parseInt(n))
-
-console.log(simpleSplitter([1,2,3,4,55]))
+console.log(mergeSort([7,5,4,3,2,1]))
