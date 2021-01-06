@@ -45,6 +45,22 @@ class SinglylinkedList{
 
         return current
     }
+
+    shift(){
+        if (!this.head) return undefined 
+
+        let head = this.head
+        this.head = head.next
+        head.next = null//this line not necessary?
+        this.length--
+
+        if (this.length === 0) {
+            this.head = null
+            this.tail = null
+        }
+
+        return head
+    }
 }
 
 const list = new SinglylinkedList()
