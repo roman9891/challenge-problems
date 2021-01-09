@@ -61,6 +61,21 @@ class SinglylinkedList{
 
         return head
     }
+
+    unshift(val){
+        let newNode = new Node(val)
+
+        if(this.length === 0){
+            this.head = newNode
+            this.tail = newNode
+        } else {
+            newNode.next = this.head
+            this.head = newNode
+        }
+        this.length++
+
+        return this
+    }
 }
 
 const list = new SinglylinkedList()
@@ -69,5 +84,5 @@ list.push(2)
 list.push(3)
 console.log(list)
 list.pop()
-console.log(list.pop(), list)
-console.log(list.pop(), list)
+list.unshift(9)
+console.log(list.unshift(8))
