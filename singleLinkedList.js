@@ -76,13 +76,24 @@ class SinglylinkedList{
 
         return this
     }
+
+    get(index){
+        if (index < 0 || index > this.length) return null
+
+        let current = this.head,
+            i = 0
+        
+        while (i < index) {
+            current = current.next
+            i++
+        }
+
+        return current
+    }
 }
 
 const list = new SinglylinkedList()
 list.push(1)
 list.push(2)
 list.push(3)
-console.log(list)
-list.pop()
-list.unshift(9)
-console.log(list.unshift(8))
+console.log(list.get(1))
