@@ -132,11 +132,6 @@ class SinglylinkedList{
         let pre = this.tail
         let store = current.next
 
-        // current.next = pre
-        // pre = current
-        // current = store
-        // store = current.next
-
         while (current) {
             current.next = pre
             pre = current
@@ -160,7 +155,7 @@ class SinglylinkedList{
             }
         }
 
-        return list
+        console.log(list)
     }
 }
 
@@ -169,4 +164,4 @@ list.push(1)
 list.push(2)
 list.push(3)
 list.push(4)
-console.log(list.reverse(), list.print())
+console.log(list.reverse())
