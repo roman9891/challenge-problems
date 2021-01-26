@@ -72,17 +72,17 @@ class DoublyLinkedList{
 
     get(index){
         if (index < 0 || index >= this.length) return undefined
-
+        let currentNode, currentIndex
         if ((index + 1) > this.length/2) {
-            let currentIndex = this.length - 1,
-                currentNode = this.tail
+            currentIndex = this.length - 1
+            currentNode = this.tail
             while (currentIndex !== index) {
                 currentNode = currentNode.prev
                 currentIndex--
             }
         } else {
-            let currentIndex = 0,
-                currentNode = this.head
+            currentIndex = 0
+            currentNode = this.head
 
             while (currentIndex !== index){
                 currentNode = currentNode.next
@@ -90,6 +90,15 @@ class DoublyLinkedList{
             }
         }
         return currentNode
+    }
+    
+    set(index, value){
+        let node = this.get(index)
+        if (node){
+            node.value = value
+            return true
+        } 
+        return false
     }
 }
 
@@ -100,4 +109,4 @@ list.push(1)
 list.push(2)
 list.push(3)
 
-console.log(list.get(4))
+console.log(list.set(4,4), list)
