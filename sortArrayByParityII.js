@@ -16,7 +16,7 @@ const sortArrayByParityI = nums => {
 // two pointers
 
 const sortArrayByParityII = nums => {
-    let odd, even, oddStore, evenStore, store
+    let odd, even, oddStore, evenStore, store, swap
 
     if (nums[0] % 2 === 0) {
         even = 0
@@ -33,12 +33,78 @@ const sortArrayByParityII = nums => {
         }
         even = i
     }
-    console.log(nums[odd], nums[even])
-    for (i = 0; i < nums.length; i++) {
-        store = nums[i]
-        nums[i] = nums[even]
-        even++
-        while (nums[even] % 2 !== 0) even++
+    console.log(nums[even], nums[odd])
+    // 1,3,5,7,2,4,6,8
+    for (let i = 0; i < nums.length; i++) {
+        console.log(i)
+        if (!store) store = nums[i]
+        if (i % 2 === 0) {
+            if (i === odd) {
+                odd++
+                while (nums[odd] % 2 === 0 && odd < nums.length) odd++
+            }
+            if (store % 2 === 0) {
+                if (store !== nums[i]) {
+                    swap = nums[i]
+                    nums[i] = store
+                    store = swap
+                } else {
+                    nums[i] = store
+                    store = 0
+                }  
+            } else nums[i] = nums[even]
+            even++
+            while (nums[even] % 2 !== 0 && even < nums.length) even++
+        } else {
+            if (i === even) {
+                even++
+                while (nums[even] % 2 !== 0 && even < nums.length) even++
+            }
+            if (store % 2 !== 0) {
+                if (store !== nums[i]) {
+                    swap = nums[i]
+                    nums[i] = store
+                    store = swap
+                } else {
+                    nums[i] = store
+                    store = 0
+                }  
+            } else nums[i] = nums[odd]
+            odd++
+            while (nums[odd] % 2 === 0 && odd < nums.length) odd++
+        }
+
+        // if (i % 2 === 0) {
+        //     if (i === odd) {
+        //         store = nums[i]
+        //         console.log("storing: ", nums[i])
+        //         nums[i] = nums[even]
+        //         while (nums[odd] % 2 === 0 && odd < nums.length) odd++       
+        //     }
+        //     else if (store) {
+        //         nums[i] = store
+        //         store = 0
+        //     } else {
+        //         nums[i] = nums[even]
+        //     }
+        //     even++
+        //     while (nums[even] % 2 !== 0 && even < nums.length) even++
+        // } else {
+        //     if (i === even) {
+        //         store = nums[i]
+        //         console.log("storing: ", nums[i])
+        //         nums[i] = nums[odd]
+        //         while (nums[even] % 2 !== 0 && even < nums.length) even++
+        //     }
+        //     else if (store) {
+        //         nums[i] = store
+        //         store = 0
+        //     } else {
+        //         nums[i] = nums[odd]
+        //     }
+        //     odd++
+        //     while (nums[odd] % 2 === 0 && odd < nums.length) odd++
+        // }
     }
 
     return nums
