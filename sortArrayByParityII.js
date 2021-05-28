@@ -110,6 +110,32 @@ const sortArrayByParityII = nums => {
     return nums
 }
 
+var sortArrayByParityII = function(nums) {
+    for(i=0;i<nums.length;i++){
+        
+        if(i%2!==0){
+            if(nums[i]%2===0){
+            let j = i+1
+            while(nums[j]%2===0) j++                
+            
+            temp=nums[j]
+            nums[j]=nums[i]
+            nums[i]=temp
+            }}
+
+        if(i%2===0){
+            if(nums[i]%2!==0){
+            let j = i+1
+            while(nums[j]%2!==0) j++               
+            
+            temp=nums[j]
+            nums[j]=nums[i]
+            nums[i]=temp  
+            }}}
+    
+    return nums
+};
+
 console.log(sortArrayByParityII([4,2,5,7]))
 console.log(sortArrayByParityII([2,3]))
 console.log(sortArrayByParityII([1,3,5,7,2,4,6,8]))
