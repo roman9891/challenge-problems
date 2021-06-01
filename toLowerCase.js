@@ -1,0 +1,1 @@
+const toLowerCase = string => string.toLowerCase()
