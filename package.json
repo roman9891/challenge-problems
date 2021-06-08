@@ -1,3 +1,24 @@
 {
-    "type": "module"
+  "type": "module",
+  "name": "problems",
+  "description": "Collection of problems from various sources that I've attempted to solve",
+  "version": "1.0.0",
+  "main": "arrayStringsAreEqual.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roman9891/challenge-problems.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/roman9891/challenge-problems/issues"
+  },
+  "homepage": "https://github.com/roman9891/challenge-problems#readme",
+  "devDependencies": {
+    "jest": "^27.0.4"
+  }
 }
