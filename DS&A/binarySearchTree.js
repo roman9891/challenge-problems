@@ -56,6 +56,66 @@ class BinarySearchTree {
             }
         }
     }
+
+    breadthFirstSearch() {
+        if (!this.root) return []
+
+        let current = this.root
+        const queue = [current]
+        const visited = []
+
+        while (queue.length) {
+            current = queue.shift()
+            visited.push(current.value)
+
+            if (current.left) queue.push(current.left)
+            if (current.right) queue.push(current.right)
+        }
+
+        return visited
+    }
+
+    DFSpreOrder() {
+        if (!this.root) return []
+
+        const data = []
+        const traverse = node => {
+            data.push(node.value)
+            if (node.left) traverse(node.left)
+            if (node.right) traverse(node.right)
+        }
+        traverse(this.root)
+
+        return data
+    }
+
+    DFSpostOrder() {
+        if (!this.root) return []
+
+        const data = []
+        const traverse = node => {
+            if (node.left) traverse(node.left)
+            if (node.right) traverse(node.right)
+            data.push(node.value)
+        }
+        traverse(this.root)
+
+        return data
+    }
+
+    DFSinOrder() {
+        if (!this.root) return []
+
+        const data = []
+        const traverse = node => {
+            if (node.left) traverse(node.left)
+            data.push(node.value)
+            if (node.right) traverse(node.right)
+        }
+        traverse(this.root)
+
+        return data
+    }
 }
 
 let bst = new BinarySearchTree()
@@ -63,10 +123,13 @@ bst.root = new Node(10)
 
 console.log(bst)
 
-bst.insert(5)
+bst.insert(6)
 bst.insert(15)
-bst.insert(7)
+bst.insert(3)
+bst.insert(8)
+bst.insert(20)
 
-console.log(bst.insert(5))
-
-console.log(bst.find(4))
+console.log(bst.breadthFirstSearch())
+console.log(bst.DFSpreOrder())
+console.log(bst.DFSpostOrder())
+console.log(bst.DFSinOrder())
