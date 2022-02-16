@@ -140,6 +140,25 @@ class DoublyLinkedList{
 
         return removedNode
     }
+    reverse() {
+        const values = []
+        let next = this.tail
+
+        while (next) {
+            values.push(next.value)
+            next = next.prev
+        }
+
+        console.log(values)
+
+        this.head = null
+        this.tail = null
+        this.length = 0
+
+        values.forEach(value => this.push(value))
+
+        return this
+    }
 }
 
 const list = new DoublyLinkedList()
@@ -150,3 +169,4 @@ list.push(2)
 list.push(3)
 
 console.log(list.remove(4),list)
+console.log(list.reverse())

@@ -4,9 +4,8 @@
 // return reduced sum of all values in object
 // reducer if a is even value add it to sum otherwise if its an object recurse
 
-const nestedEvenSum = object => {
-    return Object.values(object).reduce(reducer)
-}
+const nestedEvenSum = object => Object.values(object).reduce(reducer)
+
 
 const reducer = (a, b) => {
     let sum = 0
