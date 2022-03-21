@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/arrayStringsAreEqual.js"
+            "program": "${workspaceFolder}/nestedEvenSum.js"
         }
     ]
 }
