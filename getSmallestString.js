@@ -49,7 +49,7 @@ const getSmallestString = (n,k) => {
         let remainingTotal = k - n + 1
         
         if (remainingTotal >= 26) {
-            smallestString.push(alphabet[26])
+            smallestString.push('z')
             k = k - 26
             n--
         } else if (remainingTotal < 26 && k > n){
@@ -66,4 +66,36 @@ const getSmallestString = (n,k) => {
     return smallestString.reverse().join('')
 }
 
-console.log(getSmallestString(96149,189223))
+// failed attempt to improve on algorithm using algebra however it doesn't work for large values
+const getSmallestStringRefactor = (n, k) => {
+    const alphabet = {}
+
+    for (let i = 1; i < 27; i ++) {
+        alphabet[i] = String.fromCharCode(i+96)
+    }
+
+    const numberOfZs = Math.floor((k - (n - 1)) / 26)
+    console.log(numberOfZs)
+    k = k - (26 * numberOfZs)
+    n = n - numberOfZs
+
+    const remainder = alphabet[k - n + 1]
+    const numberOfAs = n - 1
+    const arrayOfZs = new Array(numberOfZs).fill('z')
+    const arrayOfAs = new Array(numberOfAs).fill('a')
+
+    return [...arrayOfAs, remainder, ...arrayOfZs].join('')
+}
+
+// console.log({
+//     original: getSmallestString(3,27),
+//     refactor: getSmallestStringRefactor(3,27)
+// })
+// console.log({
+//     original: getSmallestString(5,73),
+//     refactor: getSmallestStringRefactor(5,73)
+// })
+console.log({
+    original: getSmallestString(20,500),
+    refactor: getSmallestStringRefactor(20,500)
+})
