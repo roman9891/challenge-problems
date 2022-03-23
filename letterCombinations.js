@@ -27,30 +27,38 @@
 // 0 <= digits.length <= 4
 // digits[i] is a digit in the range ['2', '9'].
 
-const letterCombinations = digits => {
-    if (digits === '') return []
-
+const letterCombinations = (digits) => {
+    if (digits === "") return [];
     const lettersObj = {
-        "2": ["a", "b", "c"],
-        "3": ["d", "e", "f"],
-        "4": ["g", "h", "i"],
-        "5": ["j", "k", "l"],
-        "6": ["m", "n", "o"],
-        "7": ["p", "q", "r", "s"],
-        "8": ["t", "u", "v"],
-        "9": ["w", "x", "y", "z"],
+      0: 0,
+      1: 1,
+      2: ["a", "b", "c"],
+      3: ["d", "e", "f"],
+      4: ["g", "h", "i"],
+      5: ["j", "k", "l"],
+      6: ["m", "n", "o"],
+      7: ["p", "q", "r", "s"],
+      8: ["t", "u", "v"],
+      9: ["w", "x", "y", "z"],
+    };
+    if (digits.length === 1) return lettersObj[digits];
+    
+    let result = [...lettersObj[digits[0]]]
+
+    for (let i = 1; i < digits.length; i++) {
+        const newResult = []
+
+        result.forEach((outerElement, index) => {
+
+            result[index] = lettersObj[digits[i]].forEach(innerElement => {
+
+                newResult.push([...outerElement, innerElement].join(''))
+            })
+        })
+        result = newResult
     }
-
-    if (digits.length === 1) return lettersObj[digits]
-
-    const digitsArray = [...digits]
-    const digitsMap = digitsArray.map(digit => lettersObj[digit])
-    let total = digitsMap.reduce((prev, current) => prev.length * current.length)
-    let result = new Array(total)
-
-    console.log(total)
-
-}
+    return result;
+  };
 
 console.log(letterCombinations("23")) // ["ad","ae","af","bd","be","bf","cd","ce","cf"]
 console.log(letterCombinations("")) // []
