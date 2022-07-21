@@ -43,8 +43,37 @@ const numMatchingSubseq = (s: string, words: string[]): number => {
     // for each letter in word move forward in s until its found or end of s
     // if all letters are found increase count
     let result = 0
+    const solutions: { [key: string]: boolean } = {}
+
+    words.forEach(word => {
+        if (solutions[word]) result++
+        else if (subsequence(s, word)) {
+            result++
+            solutions[word] = true
+        }
+    })
+
     return result
+}
+
+const subsequence = (s: string, word: string): boolean => {
+    let p1 = 0
+    let p2 = 0
+    let count = 0
+
+    while (p1 < s.length && p2 < word.length) {
+        if (word[p2] === s[p1]) {
+            p1++
+            p2++
+            count++
+        } else {
+            p1++
+        }
+    }
+
+    return count === word.length
 }
 
 console.log(numMatchingSubseq("abcde", ["a","bb","acd","ace"])) // 3
 console.log(numMatchingSubseq("dsahjpjauf", ["ahjpjau","ja","ahbwzgqnuk","tnmlanowax"])) // 2
+
