@@ -3,14 +3,8 @@
 // 315. Count of Smaller Numbers After Self
 // Hard
 
-// 6745
-
-// 185
-
-// Add to List
-
-// Share
-// You are given an integer array nums and you have to return a new counts array. The counts array has the property where counts[i] is the number of smaller elements to the right of nums[i].
+// You are given an integer array nums and you have to return a new counts array. 
+// The counts array has the property where counts[i] is the number of smaller elements to the right of nums[i].
 
  
 
@@ -39,19 +33,31 @@
 // -104 <= nums[i] <= 104
 
 const countSmaller = (nums: number[]): number[] => {
-    const result: number[] = []
     // iterate through array
     // slice from index to end
     // check less
     // push tally into result
+    const result: number[] = []
+
+    for (let i = 0; i < nums.length; i++) {
+        const currentValue = nums[i]
+        const numsToTheRight = nums.slice(i+1)
+        const amountLess = checkLess(numsToTheRight, currentValue)
+        result.push(amountLess)
+    }
+
     return result
 }
 
 const checkLess = (nums: number[], value: number): number => {
-    let count = 0
     // iterate through array
     // if element is less than value increase count
     // return count
+    let count = 0
+
+    for (let num of nums) {
+        if (num < value) count++
+    }
     return count
 }
 
