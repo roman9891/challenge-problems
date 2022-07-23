@@ -33,7 +33,7 @@
 // -100 <= Node.val <= 100
 // -200 <= x <= 200
 
-const partition = (head: Node | null, x: number): Node | null => {
+const partition = (head: ListNode | null, x: number): ListNode | null => {
     // use three reference points
     // low: end of low list
     // high: end of high list
@@ -46,6 +46,60 @@ const partition = (head: Node | null, x: number): Node | null => {
     // same for low except mid part
     // at end of list, low => mid
     // return list
+    let first: ListNode | undefined, low: ListNode | undefined, mid: ListNode | undefined, high: ListNode | undefined
+    let current = head
 
-    return null
+    while (current) {
+        
+        if (current.value >= x) {
+            if (!mid) mid = current
+
+            if (high) {
+                high.next = current
+            }
+
+            high = current
+        } else {
+            if (!first) first = current
+
+            if (low) {
+                low.next = current
+            }
+            low = current
+        }
+        current = current.next
+    }
+
+    if (low && mid) low.next = mid
+    else if (mid) first = mid
+    if (high) high.next = null
+
+    return first ? first : null
 }
+
+class ListNode {
+    next: ListNode | null
+
+    constructor(public value: number) {}
+}
+
+const compileList = (list: number[]): ListNode => {
+    let head = new ListNode(list[0])
+    let current = head
+
+    for (let i = 1; i < list.length; i++) {
+        current.next = new ListNode(list[i])
+        current = current.next
+    }
+
+    return head
+}
+
+let head = compileList([1,4,3,2,5,2])
+
+const node = partition(head, 3)
+console.log(node?.next)
+console.log(node?.next?.next)
+console.log(node?.next?.next?.next)
+console.log(node?.next?.next?.next?.next)
+console.log(node?.next?.next?.next?.next?.next)
