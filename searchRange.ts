@@ -26,6 +26,30 @@
 // -109 <= target <= 109
 
 const searchRange = (nums: number[], target: number): number[] => {
+    // Binary search:
+    // recursively check mid point
+    // if mid is higher than target lower mid and vice versa
+    // return index or null
+    // if target is found find range otherwise return [-1,-1]
+    // find range:
+    // once target is found look left until not target and vice versa
+    // push left and right indices of target into result and return
+    const index = binSearch(nums, target)
+    
+    if (index) {
+        return findRange(nums, index)
+    } else {
+        return [-1,-1]
+    }
+}
+
+const binSearch = (nums: number[], target: number): number | null => {
+    let start, mid, end
+
+    return nums[mid] === target ? mid : null
+}
+
+const findRange = (nums: number[], index: number): number[] => {
     const result = []
     return result
 }
