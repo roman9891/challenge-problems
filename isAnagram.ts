@@ -28,7 +28,7 @@ const isAnagram = (s: string, t: string): boolean => {
     if (s.length !== t.length) return false
 
     const tracker: {[key: string]: number} = {}
-    // if lengths not equal return false
+
     for (let i = 0; i < s.length; i++) {
         let char = s[i]
         if (!tracker[char]) tracker[char] = 1
@@ -37,8 +37,11 @@ const isAnagram = (s: string, t: string): boolean => {
     
     for (let i = 0; i < t.length; i++) {
         let char = t[i]
-        // if char doesn't exist return false
-        if (tracker[char]) tracker[char]-- // if now in negative return false
+        if (!tracker[char]) return false
+        if (tracker[char]) {
+            tracker[char]-- 
+            if (tracker[char] < 0) return false
+        }
     }
 
     for (let key in tracker) {
