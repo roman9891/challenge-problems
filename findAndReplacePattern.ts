@@ -32,9 +32,43 @@ const findAndReplacePattern = (words: string[], pattern: string): string[] => {
         // compare values
     // if pattern matches push into result
     // return result
+    const targetPattern = convertStringToPattern(pattern)
     const result: string[] = []
+
+    words.forEach(word => {
+        const currentPattern = convertStringToPattern(word)
+        if (currentPattern === targetPattern) result.push(word)
+    })
+
     return result
+}
+
+const convertStringToPattern = (s: string): string => {
+    // create tracking object
+    // create counter
+    // iterate through letters
+    // if letter doesn't exist
+    // assign letter as key in object and count as value
+    // then increase count
+    // map letters to their value in object
+    // return map as string
+    const tracker: {[key: string]: number} = {}
+    let count: number = 0
+
+    for (let i = 0; i < s.length; i++) {
+        let currentLetter = s[i]
+
+        if (tracker[currentLetter] === undefined) {
+            tracker[currentLetter] = count
+            count++
+        }
+    }
+
+    let letters = s.split('')
+    const pattern = letters.map(letter => tracker[letter])
+    return pattern.join('')
 }
 
 console.log(findAndReplacePattern(["abc","deq","mee","aqq","dkd","ccc"], "abb")) // ["mee", "aqq"]
 console.log(findAndReplacePattern(["a","b","c"], "a")) // ["a","b","c"]
+console.log(convertStringToPattern("test"))
