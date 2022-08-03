@@ -27,10 +27,16 @@
 // At most 1000 calls will be made to book.
 
 class MyCalendar {
+    // bookings object that holds booked dates
     constructor(){}
 
     book(start: number, end: number): boolean | null {
-        return null
+        // if improper input return null
+        // loop from start to end
+        // if current value exists in bookings return false
+        // first loop only checks availability
+        // loop again from start to end and mark values as true in object
+        return true
     }
 }
 
