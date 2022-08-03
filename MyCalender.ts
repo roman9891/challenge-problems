@@ -28,6 +28,8 @@
 
 class MyCalendar {
     // bookings object that holds booked dates
+    bookings: {[key: string]: boolean} = {}
+
     constructor(){}
 
     book(start: number, end: number): boolean | null {
@@ -36,12 +38,20 @@ class MyCalendar {
         // if current value exists in bookings return false
         // first loop only checks availability
         // loop again from start to end and mark values as true in object
+        for (let i = start; i < end; i++) {
+            if (this.bookings[i]) return false
+        }
+
+        for (let i = start; i < end; i++) {
+            this.bookings[i] = true
+        }
+
         return true
     }
 }
 
 const myCalendar = new MyCalendar();
-myCalendar.book(10, 20); // return True
-myCalendar.book(15, 25); // return False, It can not be booked because time 15 is already booked by another event.
-myCalendar.book(20, 30); // return True, The event can be booked, as the first event takes every time less than 20, but not including 20.
+console.log(myCalendar.book(10, 20)); // return True
+console.log(myCalendar.book(15, 25)); // return False, It can not be booked because time 15 is already booked by another event.
+console.log(myCalendar.book(20, 30)); // return True, The event can be booked, as the first event takes every time less than 20, but not including 20.
  
