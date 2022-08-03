@@ -26,7 +26,7 @@
 // 0 <= start < end <= 109
 // At most 1000 calls will be made to book.
 
-class MyCalendar {
+class MyCalendarFailure {
     // bookings object that holds booked dates
     bookings: {[key: string]: boolean} = {}
 
@@ -50,8 +50,60 @@ class MyCalendar {
     }
 }
 
+class MyCalendar {
+    // bookings 2D array
+    bookings: number[][] = []
+
+    constructor(){}
+
+    book(start: number, end: number): boolean | null {
+        // check start against bookings
+        // iterate through bookings until start date equal or greater than start
+        // if equal return false
+        // else if greater
+        // check if prev end is less than or equal to start
+        // and next start is greater than or equal to end
+        // if so return index
+        // else return false
+        // if index is equal to length then push in
+        // otherwise splice at index
+        if (!this.bookings.length) {
+            this.bookings.push([start, end])
+            return true
+        }
+
+        const availableIndex = this.checkBookings(start, end)
+
+        if (availableIndex === null) return false
+
+        if (availableIndex === this.bookings.length) this.bookings.push([start, end])
+        else this.bookings.splice(availableIndex, 0, [start, end])
+
+        return true
+    }
+
+    checkBookings(start: number, end: number): number | null {
+        for (let i = 0; i < this.bookings.length; i++) {
+            if (this.bookings[i][0] === start) {
+                return null
+            }
+            else if (this.bookings[i][0] >= end) {
+                if (!this.bookings[i-1]) return i
+                if (this.bookings[i-1][1] <= start) return i
+                else {
+                    break
+                }
+            } else if (i === this.bookings.length - 1 && this.bookings[i][1] <= start) return i + 1
+        }
+        return null
+    }
+}
+
 const myCalendar = new MyCalendar();
 console.log(myCalendar.book(10, 20)); // return True
 console.log(myCalendar.book(15, 25)); // return False, It can not be booked because time 15 is already booked by another event.
 console.log(myCalendar.book(20, 30)); // return True, The event can be booked, as the first event takes every time less than 20, but not including 20.
+console.log(myCalendar.book(30, 35)); // return True, The event can be booked, as the first event takes every time less than 20, but not including 20.
+console.log(myCalendar.book(0, 5)); // return True, The event can be booked, as the first event takes every time less than 20, but not including 20.
+console.log(myCalendar.book(5, 11)); // return True, The event can be booked, as the first event takes every time less than 20, but not including 20.
  
