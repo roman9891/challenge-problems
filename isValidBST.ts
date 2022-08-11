@@ -31,6 +31,33 @@ class TreeNode {
 }
 
 const isValidBST = (root: TreeNode | null): boolean => {
+    // BFS
+    // add each value to queue
+    // loop through queue
+    // while at each value check:
+        // if left exists and and left is less and if right exists and right is greater
+        // if invalid break and return false
+    // otherwise return true outside the loop once entire tree has been successfully traversed
+
+
+    // breadthFirstSearch() {
+    //     if (!this.root) return []
+
+    //     let current = this.root
+    //     const queue = [current]
+    //     const visited = []
+
+    //     while (queue.length) {
+    //         current = queue.shift()
+    //         visited.push(current.value)
+
+    //         if (current.left) queue.push(current.left)
+    //         if (current.right) queue.push(current.right)
+    //     }
+
+    //     return visited
+    // }
+    
     return true
 }
 
