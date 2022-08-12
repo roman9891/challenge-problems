@@ -31,34 +31,22 @@ class TreeNode {
 }
 
 const isValidBST = (root: TreeNode | null): boolean => {
-    // BFS
-    // add each value to queue
-    // loop through queue
-    // while at each value check:
-        // if left exists and and left is less and if right exists and right is greater
-        // if invalid break and return false
-    // otherwise return true outside the loop once entire tree has been successfully traversed
+    // BFS traversal of tree
+    // save visited list
+    // filter list of null values
+    // create tree based on filtered list
+    // BFS traversal of new tree
+    // compare new list to unfiltered original list
 
+    const originalTreeArray = breadthFirstSearch(root)
+    const filteredOriginalTree = originalTreeArray.filter(value => value)
+    const newTreeRoot = new TreeNode(originalTreeArray[0])
 
-    // breadthFirstSearch() {
-    //     if (!this.root) return []
+    for (let i = 1; i < originalTreeArray.length; i++) {}
 
-    //     let current = this.root
-    //     const queue = [current]
-    //     const visited = []
+    const newTreeArray = breadthFirstSearch(newTreeRoot)
 
-    //     while (queue.length) {
-    //         current = queue.shift()
-    //         visited.push(current.value)
-
-    //         if (current.left) queue.push(current.left)
-    //         if (current.right) queue.push(current.right)
-    //     }
-
-    //     return visited
-    // }
-    
-    return true
+    return originalTreeArray.join('') === newTreeArray.join('')
 }
 
 //console.log(isValidBST([2,1,3])) // true
