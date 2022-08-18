@@ -24,6 +24,10 @@
 // 1 <= arr[i] <= 105
 
 const minSetSize = (arr: number[]): number => {
+    // tracking object that tracks count of each number
+    // sort result by highest count
+    // subtract highest counts until lower than half
+    // return quantity of counts removed
     let result = 0
     return result
 }
