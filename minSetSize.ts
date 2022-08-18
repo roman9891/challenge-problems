@@ -28,7 +28,26 @@ const minSetSize = (arr: number[]): number => {
     // sort result by highest count
     // subtract highest counts until lower than half
     // return quantity of counts removed
+    const tracker: {[key: string]: number} = {}
+    let target = Math.ceil(arr.length / 2)
     let result = 0
+
+    arr.forEach(num => {
+        if (tracker[num]) tracker[num] ++
+        else tracker[num] = 1
+    })
+
+    const frequencyCounts: number[] = Object.values(tracker)
+    frequencyCounts.sort((a,b) => a - b)
+
+    while (target > 0) {
+        let count = frequencyCounts.pop()
+        if (count) {
+            target = target - count
+            result++
+        }
+    }
+    
     return result
 }
 
