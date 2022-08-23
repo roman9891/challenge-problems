@@ -34,6 +34,12 @@
 // nums is sorted in non-decreasing order.
 
 const isPossible = (arr: number[]): boolean => {
+    // iterate through nums
+    // add each num to a new arr 
+    // make new arr if duplicate
+    // make new arr if current arr has 3 items
+    // check to see if it can be added increasingly
+    // check to see if arr is less than 3
     return true
 }
 
