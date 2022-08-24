@@ -26,7 +26,18 @@ const isPalindromeLinkedList = (head: ListNode | null): boolean => {
     // at each node push value into array
     // after moving through list
     // check to see if values reverse equal values
-    return true
+
+    const values: number[] = []
+    let current = head
+
+    while (current) {
+        values.push(current.value)
+        current = current.next
+    }
+
+    const valuesString = values.join('')
+    const reversedValuesString = values.reverse().join('')
+    return valuesString === reversedValuesString
 }
 
 //console.log(isPalindromeLinkedList([1,2,2,1])) // true
