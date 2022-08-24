@@ -22,6 +22,10 @@ class ListNode {
 }
 
 const isPalindromeLinkedList = (head: ListNode | null): boolean => {
+    // progress through list
+    // at each node push value into array
+    // after moving through list
+    // check to see if values reverse equal values
     return true
 }
 
