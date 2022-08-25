@@ -25,7 +25,22 @@ const canConstruct = (ransomNote: string, magazine: string): boolean => {
     // iterate over magazine
     // at each letter subtract count
     // return whether every entry less than 1
-    return true
+    const tracker: {[key:string]: number} = {}
+
+    for (let i = 0; i < ransomNote.length; i ++) {
+        let letter = ransomNote[i]
+
+        tracker[letter] ? tracker[letter] ++ : tracker[letter] = 1
+    }
+
+    for (let i = 0; i < magazine.length; i ++) {
+        let letter = magazine[i]
+
+        if (tracker[letter]) tracker[letter] --
+    }
+
+    const values: number[] = Object.values(tracker)
+    return values.every(value => value <= 0)
 }
 
 console.log(canConstruct("a","b")) // false
