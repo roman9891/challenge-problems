@@ -21,6 +21,10 @@
 // ransomNote and magazine consist of lowercase English letters.
 
 const canConstruct = (ransomNote: string, magazine: string): boolean => {
+    // track all letters and counts in ransom inside object
+    // iterate over magazine
+    // at each letter subtract count
+    // return whether every entry less than 1
     return true
 }
 
