@@ -28,9 +28,19 @@
 // 1 <= m, n <= 300
 // grid[i][j] is '0' or '1'.
 
+type Island = {
+    [key: string]: boolean
+}
+
 const numIslands = (grid: string[][]): number => {
-    let result: number = 0
-    return result
+    // iterate through grid
+    // if 1 check adjacency
+    //   iterate through found islands and see if any adjacent tiles have already been found
+    //   if so then add tile to that island
+    //   if not then add as new island
+    // return island count
+    const foundIslands: Island[] = []
+    return foundIslands.length
 }
 
 console.log(numIslands([
