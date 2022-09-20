@@ -43,8 +43,41 @@ class TreeNode {
 }
 
 const pseudoPalindromicPaths = (root: TreeNode | null): number => {
-    let result: number = 0
+    // DFS
+    // run possiblePalindrome on each path
+    // if true increment result
+    // return result
+    if (!root) return 0
+
+    let result = 0
+    const path: number[] = []
+
+    const traverse = node => {
+        path.push(node.value)
+
+        if (node.left) traverse(node.left)
+        if (node.right) traverse(node.right)
+        // node with neither left nor right marks end of a path
+        if (!node.left && !node.right) possiblePalindrome(path) ? result++ : null
+        // pop before removing from stack to appropriately adjust the path as traversal continues
+        path.pop()
+    }
+
+    traverse(root)
+
     return result
+}
+
+const possiblePalindrome = (path: number[]): boolean => {
+    // track frequency of each number
+    // if more than one value occurs an odd number of times return false
+    const frequencyTracker: {[key: string]: number} = {}
+
+    path.forEach(value => frequencyTracker[value] ? frequencyTracker[value] ++ : frequencyTracker[value] = 1)
+
+    const oddValues = Object.values(frequencyTracker).filter(value => value % 2 !== 0)
+
+    return oddValues.length <= 1
 }
 
 // console.log(pseudoPalindromicPaths())
