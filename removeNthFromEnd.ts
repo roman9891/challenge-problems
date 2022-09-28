@@ -30,6 +30,12 @@ class ListNode {
 }
 
 const removeNthFromEnd = (head: ListNode | null, n: number): ListNode | null => {
+    // iterate through list
+    // while track nth placement in obj
+    // set next of n - 1 to n + 1
+    // if n - 1 doesn't exist set head to n + 1 and if n + 1 doesn't exist either then set head to null
+    // if n + 1 doesn't exist set n - 1 next to null and if n - 1 doesn't exist either set head to null
+    // return head
     return head
 }
 
