@@ -23,9 +23,17 @@
 // s consists of only English letters and spaces ' '.
 // There will be at least one word in s.
 
-const lengthOfLastWord = (s: string) => {
+const lengthOfLastWord = (s: string): number  => {
     // function go here
-    return "test"
+    // split string into words
+    // find last word
+    // 
+    const words: string[] = s.split(' ').filter(word => word !== '')
+    const lastIndex = words.length - 1
+    const lastWord: string = words[lastIndex]
+    const lastWordCount: number = lastWord.length
+
+    return lastWordCount
 }
 
 console.log(lengthOfLastWord("Hello World")) // 5
