@@ -31,14 +31,25 @@
 // At most 2 * 105 calls will be made to set and get.
 
 class TimeMap {
+    // set into object with key as key
+    // Object method:
+    // if key doesnt set value to nested object
+    // set timestamp to key in nested object and set value as value of timestamp
+    // get by try key of key key of timestamp to access nested stored value
+    // if undefined then grab entries of nested object
+    // iterate through entries
+    // if next entry is above time stamp or undefined then return current
+    storage: {[key: string]: {}}
     constructor(){}
 
     set(key: string, value: string, timestamp: number): void {}
 
-    get(key: string, timestamp: number){}
+    get(key: string, timestamp: number): string {
+        return ''
+    }
 }
 
-const timeMap = new TimeMap
+const timeMap = new TimeMap()
 
 timeMap.set("foo", "bar", 1);  // store the key "foo" and value "bar" along with timestamp = 1.
 timeMap.get("foo", 1);         // return "bar"
