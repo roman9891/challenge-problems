@@ -36,6 +36,25 @@ const removeNthFromEnd = (head: ListNode | null, n: number): ListNode | null => 
     // if n - 1 doesn't exist set head to n + 1 and if n + 1 doesn't exist either then set head to null
     // if n + 1 doesn't exist set n - 1 next to null and if n - 1 doesn't exist either set head to null
     // return head
+    const nthIndexTracker: {[key: string]: ListNode | null} = {}
+    let current: ListNode | null = head
+    let i: number = 1
+
+    while (current) {
+        nthIndexTracker[i] = current
+        current = current.next
+        i++
+    }
+
+    let indexToBeRemoved = i - n
+
+    if (!nthIndexTracker[indexToBeRemoved - 1]) return nthIndexTracker[indexToBeRemoved + 1]
+    if (!nthIndexTracker[indexToBeRemoved + 1]) nthIndexTracker[indexToBeRemoved - 1] = null
+
+    // if (nthIndexTracker[indexToBeRemoved - 1] !== null && nthIndexTracker[indexToBeRemoved + 1] !== null) {
+    //     nthIndexTracker[indexToBeRemoved - 1].next = nthIndexTracker[indexToBeRemoved + 1]
+    // }
+
     return head
 }
 
